@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "declarationDir": "declarations",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "jsxImportSource": "@emotion/react"
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules", "node_modules/antd/**/*"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
