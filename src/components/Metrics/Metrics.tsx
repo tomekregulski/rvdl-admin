@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchTracks } from '../queries/audioQueries';
+import { fetchTracks } from '../../queries/audioQueries';
+import { Charts } from './Charts';
 
-export function DataTable() {
+export function Metrics() {
   const { data, isLoading, isError } = useQuery(['tracks'], () => fetchTracks(), {
-    staleTime: Infinity,
-    cacheTime: Infinity,
+    staleTime: 15000,
   });
 
   return (
     <>
-      <div>DataTable</div>
+      <div>Metrics</div>
       {isLoading && <div>loading...</div>}
-      {data && <div>Returned {data.length} tracks</div>}
+      {data && <Charts />}
       {isError && <div>An error occured</div>}
     </>
   );

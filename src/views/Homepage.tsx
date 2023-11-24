@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { DataTable } from '../components/DataTable';
-import { Metrics } from '../components/Metrics';
+import { DataTable } from '../components/DstaTable/DataTable';
+import { Metrics } from '../components/Metrics/Metrics';
 
 type Views = 'dataTable' | 'metrics';
 
