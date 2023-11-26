@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { DataTable } from '../components/DstaTable/DataTable';
-import { Metrics } from '../components/Metrics/Metrics';
+import { DataTableContainer } from '../components/DataTable/Table/DataTableContainer';
+import { MetricsContainer } from '../components/Metrics/MetricsContainer';
 
 type Views = 'dataTable' | 'metrics';
 
@@ -52,8 +52,8 @@ export function HomePage() {
       >
         {`View ${otherView}`}
       </button>
-      {view === 'metrics' && <Metrics />}
-      {view === 'dataTable' && <DataTable />}
+      {view === 'metrics' && <MetricsContainer />}
+      {view === 'dataTable' && <DataTableContainer />}
     </div>
   );
 }
