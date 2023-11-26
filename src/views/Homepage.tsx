@@ -9,7 +9,7 @@ type Views = 'dataTable' | 'metrics';
 const key = import.meta.env.VITE_API_KEY;
 
 export function HomePage() {
-  const [view, setView] = useState<Views>('metrics');
+  const [view, setView] = useState<Views>('dataTable');
 
   useEffect(() => {
     async function getToken() {
