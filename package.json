@@ -58,6 +58,6 @@
   "pre-commit": "lint",
   "license": "MIT",
   "resolutions": {
-    "react-smooth": "0.1.15"
+    "react-smooth": "2.0.5"
   }
 }
