@@ -17,7 +17,7 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "jsxImportSource": "@emotion/react"
   },
   "include": ["src"],
