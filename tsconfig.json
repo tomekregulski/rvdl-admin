@@ -17,10 +17,15 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "jsxImportSource": "@emotion/react"
   },
   "include": ["src"],
-  "exclude": ["dist", "node_modules", "node_modules/antd/**/*", "node_modules/rc-table/**/*"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "node_modules/antd/**/*",
+    "node_modules/rc-table/**/*"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
