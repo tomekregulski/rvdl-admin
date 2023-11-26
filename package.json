@@ -56,5 +56,8 @@
     "vite": "^5.0.2"
   },
   "pre-commit": "lint",
-  "license": "MIT"
+  "license": "MIT",
+  "resolutions": {
+    "react-smooth": "0.1.15"
+  }
 }
