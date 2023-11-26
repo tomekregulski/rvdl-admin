@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchTracks } from '../../queries/audioQueries';
 import { Charts } from './Charts';
 
-export function Metrics() {
+export function MetricsContainer() {
   const { data, isLoading, isError } = useQuery(['tracks'], () => fetchTracks(), {
     staleTime: 15000,
   });
