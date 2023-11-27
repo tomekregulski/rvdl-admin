@@ -5,7 +5,14 @@ import { useState } from 'react';
 import { getDataType } from '../../../queries/audioQueries';
 import { Table } from './DataTable';
 
-export type DataTypes = 'event' | 'location' | 'tape' | 'track' | 'user';
+export type DataTypes =
+  | 'artist'
+  | 'event'
+  | 'location'
+  | 'raga'
+  | 'tape'
+  | 'track'
+  | 'user';
 
 interface DataTypeOptions {
   label: DataTypes;
@@ -32,6 +39,14 @@ const options: DataTypeOptions[] = [
   {
     label: 'tape',
     value: 5,
+  },
+  {
+    label: 'raga',
+    value: 6,
+  },
+  {
+    label: 'artist',
+    value: 7,
   },
 ];
 
