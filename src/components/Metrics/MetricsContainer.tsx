@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchTracks } from '../../queries/audioQueries';
+import { fetchTracks } from '../../queries/tableQueries';
 import { Charts } from './Charts';
 
 export function MetricsContainer() {
