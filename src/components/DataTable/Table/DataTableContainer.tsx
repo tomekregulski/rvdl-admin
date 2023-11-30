@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { Select } from 'antd';
+import { Input, Modal, Select } from 'antd';
 import { useState } from 'react';
 
-import { getDataType } from '../../../queries/audioQueries';
+import { createDataType, getDataType } from '../../../queries/tableQueries';
 import { Table } from './DataTable';
 
 export type DataTypes =
@@ -51,7 +51,9 @@ const options: DataTypeOptions[] = [
 ];
 
 export function DataTableContainer() {
-  const [dataType, setDataType] = useState<DataTypes>('track');
+  const [dataType, setDataType] = useState<DataTypes>('location');
+  const [promptCreate, setPromptCreate] = useState<boolean>(false);
+  const [newName, setNewName] = useState<string>('');
 
   const { data, isLoading, isError } = useQuery([dataType], () => getDataType(dataType), {
     staleTime: 15000,
@@ -67,9 +69,27 @@ export function DataTableContainer() {
         />
       </div>
       <div>DataTable</div>
+      <button type="button" onClick={() => setPromptCreate(true)}>
+        Create
+      </button>
       {isLoading && <div>loading...</div>}
       {data && <Table data={data} />}
       {isError && <div>An error occured</div>}
+      <Modal
+        title="Create Modal"
+        open={!!promptCreate}
+        onOk={() => {
+          newName && createDataType('location', { name: newName });
+          setPromptCreate(false);
+        }}
+        onCancel={() => setPromptCreate(false)}
+      >
+        <p>New Name</p>
+        <Input
+          placeholder={'Enter name'}
+          onChange={(event) => setNewName(event.target.value)}
+        />
+      </Modal>
     </>
   );
 }
