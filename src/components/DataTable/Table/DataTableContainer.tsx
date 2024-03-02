@@ -3,7 +3,7 @@ import { Input, Modal, Select } from 'antd';
 import { useState } from 'react';
 
 import { createDataType, getDataType } from '../../../queries/tableQueries';
-import { Table } from './DataTable';
+import { Data, Table } from './DataTable';
 
 export type DataTypes =
   | 'artist'
@@ -53,7 +53,7 @@ const options: DataTypeOptions[] = [
 export function DataTableContainer() {
   const [dataType, setDataType] = useState<DataTypes>('location');
   const [promptCreate, setPromptCreate] = useState<boolean>(false);
-  const [newName, setNewName] = useState<string>('');
+  const [createData, setCreateData] = useState<Data | null>(null);
 
   const { data, isLoading, isError } = useQuery([dataType], () => getDataType(dataType), {
     staleTime: 15000,
@@ -73,22 +73,28 @@ export function DataTableContainer() {
         Create
       </button>
       {isLoading && <div>loading...</div>}
-      {data && <Table data={data} />}
+      {data && <Table data={data} dataType={dataType} />}
       {isError && <div>An error occured</div>}
       <Modal
-        title="Create Modal"
+        title={`Create ${dataType}`}
         open={!!promptCreate}
         onOk={() => {
-          newName && createDataType('location', { name: newName });
+          createData && createDataType(dataType, createData);
           setPromptCreate(false);
         }}
         onCancel={() => setPromptCreate(false)}
       >
-        <p>New Name</p>
-        <Input
-          placeholder={'Enter name'}
-          onChange={(event) => setNewName(event.target.value)}
-        />
+        {Object.keys(data[0]).map((item) => (
+          <>
+            <div>{item}</div>
+            <Input
+              placeholder={''}
+              onChange={(event) =>
+                setCreateData((prev) => ({ ...prev, [item]: event.target.value }))
+              }
+            />
+          </>
+        ))}
       </Modal>
     </>
   );

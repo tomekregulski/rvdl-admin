@@ -1,34 +1,44 @@
 import { Input, Modal, Table as AntdTable } from 'antd';
 import { useState } from 'react';
+import { Track } from 'src/types';
 
 import { deleteDataType, editDataType } from '../../../queries/tableQueries';
+import { prepareTracks } from '../../../util/prepareTracks';
+import { DataTypes } from './DataTableContainer';
 
 interface BaseData {
   id: number;
   name?: string;
 }
 
-interface Data extends BaseData {}
+export interface Data extends BaseData {}
 
 interface TableProps {
   data: Data[];
+  dataType: DataTypes;
 }
 
 interface PromptDelete {
   id: number;
 }
-interface PromptEdit {
-  id: number;
-  name?: string;
-}
 
 export function Table(props: TableProps) {
   const [promptDelete, setPromptDelete] = useState<PromptDelete | null>(null);
-  const [promptEdit, setPromptEdit] = useState<PromptEdit | null>(null);
+  const [promptEdit, setPromptEdit] = useState<Data | null>(null);
   const [newName, setNewName] = useState<string>('');
+  const [editData, setEditData] = useState<Data | null>(null);
 
-  const { data } = props;
-  const keys = data ? Object.keys(data[0]) : [];
+  console.log(editData);
+
+  const { data, dataType } = props;
+  let tableData = data;
+
+  if (dataType === 'track') {
+    const preparedTracks = prepareTracks(data as Track[]);
+    tableData = preparedTracks;
+  }
+
+  const keys = tableData ? Object.keys(tableData[0]) : [];
   const newColumns = keys
     ? keys.map((k) => ({
         title: k,
@@ -36,7 +46,7 @@ export function Table(props: TableProps) {
         key: k,
       }))
     : [];
-  const newRows = data?.map((item) => ({
+  const newRows = tableData?.map((item) => ({
     key: item.id,
     ...item,
   }));
@@ -50,7 +60,7 @@ export function Table(props: TableProps) {
         <button
           type="button"
           onClick={() => {
-            setPromptEdit({ id: record.id, name: record.name });
+            setPromptEdit({ ...record });
             setNewName(record.name!);
           }}
         >
@@ -73,7 +83,7 @@ export function Table(props: TableProps) {
     <>
       <AntdTable dataSource={newRows} columns={columns} />
       <Modal
-        title="Basic Modal"
+        title="Delete Item"
         open={!!promptDelete}
         onOk={() => {
           promptDelete?.id && deleteDataType('location', { id: promptDelete.id });
@@ -81,24 +91,33 @@ export function Table(props: TableProps) {
         }}
         onCancel={() => setPromptDelete(null)}
       >
-        <p>Delete Location with ID: {promptDelete?.id}?</p>
+        <p>
+          Delete {`${dataType}`} with ID: {promptDelete?.id}?
+        </p>
+        <p>Before deleting, please ensure that no existing records reference this ID.</p>
       </Modal>
       <Modal
-        title="Basic Modal"
+        title="Edit Item"
         open={!!promptEdit}
         onOk={() => {
           promptEdit?.id &&
             promptEdit?.name &&
-            editDataType('location', { id: promptEdit.id, name: newName });
+            editDataType(dataType, { id: promptEdit.id, name: newName });
           setPromptEdit(null);
         }}
         onCancel={() => setPromptEdit(null)}
       >
-        <p>New Name</p>
-        <Input
-          placeholder={promptEdit?.name ?? ''}
-          onChange={(event) => setNewName(event.target.value)}
-        />
+        {Object.keys(tableData[0]).map((item) => (
+          <>
+            <div>{item}</div>
+            <Input
+              placeholder={promptEdit?.name ?? ''}
+              onChange={(event) =>
+                setEditData((prev) => ({ ...prev, [item]: event.target.value }))
+              }
+            />
+          </>
+        ))}
       </Modal>
     </>
   );
