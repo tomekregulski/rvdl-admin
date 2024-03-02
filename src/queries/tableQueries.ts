@@ -17,12 +17,13 @@ export async function fetchTracks() {
 }
 
 export async function getDataType(dataType: DataTypes | undefined) {
-  const currentJwt = isValidJwt();
+  // const currentJwt = isValidJwt();
+  console.log(`${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`);
   if (dataType) {
     const response = await axios.get(
       `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
       {
-        headers: { jwt: currentJwt?.jwt },
+        // headers: { jwt: currentJwt?.jwt },
       },
     );
     console.log(response.data);
@@ -31,7 +32,7 @@ export async function getDataType(dataType: DataTypes | undefined) {
 }
 
 interface PostDataBase {
-  name: string;
+  name?: string;
 }
 
 interface PostData extends PostDataBase {}
