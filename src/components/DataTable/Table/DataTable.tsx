@@ -108,15 +108,16 @@ export function Table(props: TableProps) {
         onCancel={() => setPromptEdit(null)}
       >
         {Object.keys(tableData[0]).map((item) => (
-          <>
+          <div key={item}>
             <div>{item}</div>
             <Input
               placeholder={promptEdit?.name ?? ''}
               onChange={(event) =>
+                // @ts-expect-error Argument of type '(prev: Data | null) => { id?: number | undefined; name?: string | undefined; }' is not assignable to parameter of type 'SetStateAction<Data | null>'.
                 setEditData((prev) => ({ ...prev, [item]: event.target.value }))
               }
             />
-          </>
+          </div>
         ))}
       </Modal>
     </>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Models } from 'src/types';
 
 import { DataTypes } from '../components/DataTable/Table/DataTableContainer';
 import { isValidJwt } from '../util/isValidJwt';
@@ -18,7 +19,7 @@ export async function fetchTracks() {
 
 export async function getDataType(dataType: DataTypes | undefined) {
   // const currentJwt = isValidJwt();
-  console.log(`${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`);
+  // console.log(`${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`);
   if (dataType) {
     const response = await axios.get(
       `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
@@ -26,7 +27,7 @@ export async function getDataType(dataType: DataTypes | undefined) {
         // headers: { jwt: currentJwt?.jwt },
       },
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   }
 }
@@ -35,14 +36,14 @@ interface PostDataBase {
   name?: string;
 }
 
-interface PostData extends PostDataBase {}
+// interface PostData extends PostDataBase {}
 interface EditData extends PostDataBase {
   id: number;
 }
 
-export async function createDataType(dataType: DataTypes | undefined, data: PostData) {
+export async function createDataType(dataType: DataTypes | undefined, data: Models) {
   // const currentJwt = isValidJwt();
-  if (dataType && data.name) {
+  if (dataType && data) {
     const response = await axios.post(
       `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
       {
@@ -55,7 +56,10 @@ export async function createDataType(dataType: DataTypes | undefined, data: Post
   }
 }
 
-export async function editDataType(dataType: DataTypes | undefined, data: EditData) {
+export async function editDataType(
+  dataType: DataTypes | undefined,
+  data: Partial<EditData>,
+) {
   // const currentJwt = isValidJwt();
   if (dataType && data.name && data.id) {
     const response = await axios.put(
