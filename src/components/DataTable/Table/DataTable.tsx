@@ -1,10 +1,9 @@
 import { Input, Modal, Table as AntdTable } from 'antd';
 import { useState } from 'react';
-import { Track } from 'src/types';
+import { DataTypes, Track } from 'types/Models';
 
 import { deleteDataType, editDataType } from '../../../queries/tableQueries';
 import { prepareTracks } from '../../../util/prepareTracks';
-import { DataTypes } from './DataTableContainer';
 
 interface BaseData {
   id: number;

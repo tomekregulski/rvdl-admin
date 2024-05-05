@@ -1,3 +1,4 @@
+import type { Artist, Event, Location, MediaType, Raga, Tape, Track } from '@types';
 import {
   createContext,
   ReactNode,
@@ -6,8 +7,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { DataTypes } from 'src/components/DataTable/Table/DataTableContainer';
-import type { Artist, Event, Location, MediaType, Raga, Tape, Track } from 'src/types';
+import { DataTypes } from 'types/Models';
 
 import { getAllData } from '../util/getAllData';
 
@@ -26,7 +26,7 @@ interface DataState {
   artists: Artist[] | null;
   mediaTypes: MediaType[] | null;
   tracks: Track[] | null;
-  getMappedData: (dataType: string) => unknown;
+  getMappedData: (dataType: DataTypes) => unknown;
 }
 
 export const DataContext = createContext<DataState | null>(null);
@@ -81,7 +81,7 @@ export const DataProvider = (props: DataContextProps) => {
     }
   }
 
-  const value = useMemo(
+  const value: DataState = useMemo(
     () => ({
       locations,
       ragas,

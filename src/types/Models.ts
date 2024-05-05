@@ -79,3 +79,13 @@ export type Models =
   | Category
   | Artist
   | MediaType;
+
+export type DataTypes =
+  | 'artist'
+  | 'event'
+  | 'location'
+  | 'media-type'
+  | 'raga'
+  | 'tape'
+  | 'track'
+  | 'user';

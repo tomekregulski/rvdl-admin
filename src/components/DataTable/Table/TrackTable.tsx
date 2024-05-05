@@ -1,6 +1,6 @@
+import { Track } from '@types';
 import { Input, Modal, Table as AntdTable } from 'antd';
 import { useState } from 'react';
-import { Track } from 'src/types';
 
 import { useDataContext } from '../../../contexts/DataContext';
 import { deleteDataType, editDataType } from '../../../queries/tableQueries';
