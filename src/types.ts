@@ -48,12 +48,34 @@ export interface Track {
   mediumGat: boolean;
   fastGat: boolean;
   accompanied: boolean;
-  notes: string;
+  notes: string | null;
   audioQuality: string;
   master: boolean;
   mediaTypeId: number;
+  mediaType: MediaType;
   public: boolean;
   url: string;
   tape: Tape;
   raga: Raga;
 }
+
+export interface Artist {
+  id: number;
+  name: string;
+  primaryTracks: Track[];
+}
+export interface MediaType {
+  id: number;
+  name: string;
+  tracks: Track[];
+}
+
+export type Models =
+  | Track
+  | Tape
+  | Location
+  | Event
+  | Raga
+  | Category
+  | Artist
+  | MediaType;

@@ -1,14 +1,25 @@
-import { useQuery } from '@tanstack/react-query';
-import { Input, Modal, Select } from 'antd';
+// import { useQuery } from '@tanstack/react-query';
+import {
+  // Input,
+  Modal,
+  Select,
+} from 'antd';
 import { useState } from 'react';
 
-import { createDataType, getDataType } from '../../../queries/tableQueries';
-import { Data, Table } from './DataTable';
+import { useDataContext } from '../../../contexts/DataContext';
+// import { Models } from 'src/types';
+// import {
+//   createDataType,
+//   getDataType
+// } from '../../../queries/tableQueries';
+// import { Table } from './DataTable';
+import { TrackTable } from './TrackTable';
 
 export type DataTypes =
   | 'artist'
   | 'event'
   | 'location'
+  | 'media-type'
   | 'raga'
   | 'tape'
   | 'track'
@@ -53,11 +64,16 @@ const options: DataTypeOptions[] = [
 export function DataTableContainer() {
   const [dataType, setDataType] = useState<DataTypes>('location');
   const [promptCreate, setPromptCreate] = useState<boolean>(false);
-  const [createData, setCreateData] = useState<Data | null>(null);
+  // const [createData, setCreateData] = useState<Models | null>(null);
 
-  const { data, isLoading, isError } = useQuery([dataType], () => getDataType(dataType), {
-    staleTime: 15000,
-  });
+  // const { data, isLoading, isError } = useQuery([dataType], () => getDataType(dataType), {
+  //   staleTime: 15000,
+  // });
+
+  const { getMappedData } = useDataContext();
+
+  const data = getMappedData(dataType);
+  console.log(data);
 
   return (
     <>
@@ -72,19 +88,20 @@ export function DataTableContainer() {
       <button type="button" onClick={() => setPromptCreate(true)}>
         Create
       </button>
-      {isLoading && <div>loading...</div>}
-      {data && <Table data={data} dataType={dataType} />}
-      {isError && <div>An error occured</div>}
+      {/* {isLoading && <div>loading...</div>} */}
+      {dataType === 'track' && <TrackTable />}
+      {/* {dataType === 'track' ? <TrackTable /> : <Table data={data} dataType={dataType} />} */}
+      {/* {isError && <div>An error occured</div>} */}
       <Modal
         title={`Create ${dataType}`}
         open={!!promptCreate}
         onOk={() => {
-          createData && createDataType(dataType, createData);
+          // createData && createDataType(dataType, createData);
           setPromptCreate(false);
         }}
         onCancel={() => setPromptCreate(false)}
       >
-        {Object.keys(data[0]).map((item) => (
+        {/* {Object.keys(dataType[0]).map((item) => (
           <>
             <div>{item}</div>
             <Input
@@ -94,7 +111,7 @@ export function DataTableContainer() {
               }
             />
           </>
-        ))}
+        ))} */}
       </Modal>
     </>
   );

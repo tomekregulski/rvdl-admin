@@ -1,8 +1,30 @@
 import { Track } from 'src/types';
 
+export interface PreparedTrack {
+  id: number;
+  trackId: number;
+  accompanied: string;
+  alap: string;
+  jor: string;
+  jhalla: string;
+  slowGat: string;
+  mediumGat: string;
+  fastGat: string;
+  audioQuality: string;
+  master: string;
+  mediaType: string;
+  notes: string | null;
+  plays: number;
+  primaryArtistId: number;
+  public: string;
+  raga: string;
+  tapeId: number;
+  url: string;
+}
+
 export function prepareTracks(tracks: Track[]) {
   const preparedTracks = tracks.map((track: Track) => {
-    const preparedTrack = {
+    const preparedTrack: PreparedTrack = {
       id: track.id,
       trackId: track.trackId,
       accompanied: track.accompanied ? 'yes' : 'no',
@@ -13,7 +35,7 @@ export function prepareTracks(tracks: Track[]) {
       mediumGat: track.mediumGat ? 'yes' : 'no',
       fastGat: track.fastGat ? 'yes' : 'no',
       audioQuality: track.audioQuality,
-      master: track.master,
+      master: track.master ? 'yes' : 'no',
       mediaType: track.mediaType.name,
       notes: track.notes,
       plays: track.plays,
