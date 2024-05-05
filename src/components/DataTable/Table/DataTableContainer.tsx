@@ -5,6 +5,7 @@ import {
   Select,
 } from 'antd';
 import { useState } from 'react';
+import { DataTypes } from 'types/Models';
 
 import { useDataContext } from '../../../contexts/DataContext';
 // import { Models } from 'src/types';
@@ -14,16 +15,6 @@ import { useDataContext } from '../../../contexts/DataContext';
 // } from '../../../queries/tableQueries';
 // import { Table } from './DataTable';
 import { TrackTable } from './TrackTable';
-
-export type DataTypes =
-  | 'artist'
-  | 'event'
-  | 'location'
-  | 'media-type'
-  | 'raga'
-  | 'tape'
-  | 'track'
-  | 'user';
 
 interface DataTypeOptions {
   label: DataTypes;

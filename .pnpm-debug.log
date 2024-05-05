@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+    "err": {
+      "name": "pnpm",
+      "message": "No package.json (or package.yaml, or package.json5) was found in \"/Users/tomekregulski/Desktop/projects/active_projects/rvdl-admin\".",
+      "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+      "stack": "pnpm: No package.json (or package.yaml, or package.json5) was found in \"/Users/tomekregulski/Desktop/projects/active_projects/rvdl-admin\".\n    at readProjectManifest (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:19790:13)\n    at async Object.readProjectManifestOnly (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:19794:28)\n    at async readProjectManifestOnly (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:43556:24)\n    at async Object.handler (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:179433:24)\n    at async /Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:183648:21\n    at async run (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:183622:34)\n    at async runPnpm (/Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:183834:5)\n    at async /Users/tomekregulski/.node/corepack/pnpm/6.24.2/dist/pnpm.cjs:183826:7"
+    }
+  }
+}

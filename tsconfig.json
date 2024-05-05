@@ -1,31 +1,30 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "node",
-    "declarationDir": "declarations",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "emitDeclarationOnly": true,
-    "declaration": true,
+    "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
-    "jsxImportSource": "@emotion/react"
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@types": ["types"],
+      "@components": ["components"]
+    }
   },
   "include": ["src"],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "node_modules/antd/**/*",
-    "node_modules/rc-table/**/*"
-  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,7 +1,7 @@
+import { Models } from '@types';
 import axios from 'axios';
-import { Models } from 'src/types';
+import { DataTypes } from 'types/Models';
 
-import { DataTypes } from '../components/DataTable/Table/DataTableContainer';
 import { isValidJwt } from '../util/isValidJwt';
 const apiKey = import.meta.env.VITE_API_KEY;
 
