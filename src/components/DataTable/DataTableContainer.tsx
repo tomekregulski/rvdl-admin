@@ -1,19 +1,14 @@
 // import { useQuery } from '@tanstack/react-query';
-import {
-  // Input,
-  Modal,
-  Select,
-} from 'antd';
+import { Modal, Select } from 'antd';
 import { useState } from 'react';
 import { DataTypes } from 'types/Models';
 
-import { useDataContext } from '../../../contexts/DataContext';
-// import { Models } from 'src/types';
-// import {
-//   createDataType,
-//   getDataType
-// } from '../../../queries/tableQueries';
-// import { Table } from './DataTable';
+import { ArtistTable } from './ArtistTable';
+import { EventTable } from './EventTable';
+import { LocationTable } from './LocationTable';
+import { MediaTypeTable } from './MediaTypeTable';
+import { RagaTable } from './RagaTable';
+import { TapeTable } from './TapeTable';
 import { TrackTable } from './TrackTable';
 
 interface DataTypeOptions {
@@ -52,19 +47,20 @@ const options: DataTypeOptions[] = [
   },
 ];
 
+const tableMap = {
+  track: <TrackTable />,
+  location: <LocationTable />,
+  event: <EventTable />,
+  tape: <TapeTable />,
+  raga: <RagaTable />,
+  artist: <ArtistTable />,
+  'media-type': <MediaTypeTable />,
+  user: <p>User Table</p>,
+};
+
 export function DataTableContainer() {
   const [dataType, setDataType] = useState<DataTypes>('location');
   const [promptCreate, setPromptCreate] = useState<boolean>(false);
-  // const [createData, setCreateData] = useState<Models | null>(null);
-
-  // const { data, isLoading, isError } = useQuery([dataType], () => getDataType(dataType), {
-  //   staleTime: 15000,
-  // });
-
-  const { getMappedData } = useDataContext();
-
-  const data = getMappedData(dataType);
-  console.log(data);
 
   return (
     <>
@@ -79,10 +75,7 @@ export function DataTableContainer() {
       <button type="button" onClick={() => setPromptCreate(true)}>
         Create
       </button>
-      {/* {isLoading && <div>loading...</div>} */}
-      {dataType === 'track' && <TrackTable />}
-      {/* {dataType === 'track' ? <TrackTable /> : <Table data={data} dataType={dataType} />} */}
-      {/* {isError && <div>An error occured</div>} */}
+      {dataType && tableMap[dataType]}
       <Modal
         title={`Create ${dataType}`}
         open={!!promptCreate}
