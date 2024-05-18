@@ -12,7 +12,7 @@
 //   dataType: DataTypes;
 // }
 
-const tableButtonStyles = { background: 'white ' };
+const tableButtonStyles = { background: 'rgb(36,36,36)' };
 interface NameIdData {
   id: number;
   name: string;

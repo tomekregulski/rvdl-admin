@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import { useDataContext } from '../../contexts/DataContext';
 
-const tableButtonStyles = { background: 'white ' };
+const tableButtonStyles = { background: 'rgb(36,36,36)' };
 
 interface TableCellProps {
   children: ReactNode;
