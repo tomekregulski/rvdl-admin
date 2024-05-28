@@ -1,9 +1,11 @@
 // import { useQuery } from '@tanstack/react-query';
-import { Modal, Select } from 'antd';
+import { Select } from 'antd';
 import { useState } from 'react';
 import { DataTypes } from 'types/Models';
 
+import { CreateDialog } from '../Dialog/CreateDialog';
 import { ArtistTable } from './ArtistTable';
+import { CategoryTable } from './CategoryTable';
 import { EventTable } from './EventTable';
 import { LocationTable } from './LocationTable';
 import { MediaTypeTable } from './MediaTypeTable';
@@ -21,10 +23,10 @@ const options: DataTypeOptions[] = [
     label: 'track',
     value: 1,
   },
-  // {
-  //   label: 'user',
-  //   value: 2,
-  // },
+  {
+    label: 'category',
+    value: 2,
+  },
   {
     label: 'location',
     value: 3,
@@ -45,10 +47,15 @@ const options: DataTypeOptions[] = [
     label: 'artist',
     value: 7,
   },
+  {
+    label: 'media-type',
+    value: 8,
+  },
 ];
 
 const tableMap = {
   track: <TrackTable />,
+  category: <CategoryTable />,
   location: <LocationTable />,
   event: <EventTable />,
   tape: <TapeTable />,
@@ -60,7 +67,7 @@ const tableMap = {
 
 export function DataTableContainer() {
   const [dataType, setDataType] = useState<DataTypes>('location');
-  const [promptCreate, setPromptCreate] = useState<boolean>(false);
+  // const [promptCreate, setPromptCreate] = useState<boolean>(false);
 
   return (
     <>
@@ -71,32 +78,9 @@ export function DataTableContainer() {
           onSelect={(_value, option) => void setDataType(option.label)}
         />
       </div>
-      <div>DataTable</div>
-      <button type="button" onClick={() => setPromptCreate(true)}>
-        Create
-      </button>
+      <div>Data View</div>
+      <CreateDialog dataType={dataType} />
       {dataType && tableMap[dataType]}
-      <Modal
-        title={`Create ${dataType}`}
-        open={!!promptCreate}
-        onOk={() => {
-          // createData && createDataType(dataType, createData);
-          setPromptCreate(false);
-        }}
-        onCancel={() => setPromptCreate(false)}
-      >
-        {/* {Object.keys(dataType[0]).map((item) => (
-          <>
-            <div>{item}</div>
-            <Input
-              placeholder={''}
-              onChange={(event) =>
-                setCreateData((prev) => ({ ...prev, [item]: event.target.value }))
-              }
-            />
-          </>
-        ))} */}
-      </Modal>
     </>
   );
 }

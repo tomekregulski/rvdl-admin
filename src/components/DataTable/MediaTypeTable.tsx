@@ -1,20 +1,12 @@
 import { useDataContext } from '../../contexts/DataContext';
-
-const tableButtonStyles = { background: 'rgb(36,36,36)' };
+import { DeleteDialog } from '../Dialog/DeleteDialog';
+import { EditDialog } from '../Dialog/EditDialog';
 
 interface ColumnTypeWithEditDelete {
   id: number;
   name: string;
   edit: JSX.Element;
   delete: JSX.Element;
-}
-
-function handleEdit(id: number) {
-  console.log(id);
-}
-
-function handleDelete(id: number) {
-  console.log(id);
 }
 
 export function MediaTypeTable() {
@@ -24,24 +16,8 @@ export function MediaTypeTable() {
     ? mediaTypes?.map((item) => ({
         id: item.id,
         name: item.name,
-        edit: (
-          <button
-            type="button"
-            style={tableButtonStyles}
-            onClick={() => handleEdit(item.id)}
-          >
-            Edit
-          </button>
-        ),
-        delete: (
-          <button
-            type="button"
-            style={tableButtonStyles}
-            onClick={() => handleDelete(item.id)}
-          >
-            Delete
-          </button>
-        ),
+        edit: <EditDialog dataType="media-type" item={item} />,
+        delete: <DeleteDialog dataType="media-type" item={item} />,
       }))
     : [];
 

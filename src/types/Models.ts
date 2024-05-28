@@ -71,17 +71,18 @@ export interface MediaType {
 }
 
 export type Models =
-  | Track
-  | Tape
-  | Location
-  | Event
-  | Raga
-  | Category
-  | Artist
-  | MediaType;
+  | Omit<Track, 'id'>
+  | Omit<Tape, 'id'>
+  | Omit<Location, 'id'>
+  | Omit<Event, 'id'>
+  | Omit<Raga, 'id'>
+  | Omit<Category, 'id'>
+  | Omit<Artist, 'id' | 'primaryTracks'>
+  | Omit<MediaType, 'id' | 'tracks'>;
 
 export type DataTypes =
   | 'artist'
+  | 'category'
   | 'event'
   | 'location'
   | 'media-type'

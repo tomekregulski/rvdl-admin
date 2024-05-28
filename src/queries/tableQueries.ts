@@ -2,6 +2,7 @@ import { Models } from '@types';
 import axios from 'axios';
 import { DataTypes } from 'types/Models';
 
+import { getErrorMessage } from '../util/getErrorMessage';
 import { isValidJwt } from '../util/isValidJwt';
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -13,8 +14,13 @@ export async function fetchTracks() {
       headers: { jwt: currentJwt?.jwt },
     },
   );
-  console.log(response.data);
-  return response.data;
+
+  if (response?.status === 200 || response?.status === 201) {
+    return response.data;
+  } else {
+    console.log('Response returned with non-200 status');
+    console.log(response);
+  }
 }
 
 export async function getDataType(dataType: DataTypes | undefined) {
@@ -22,13 +28,26 @@ export async function getDataType(dataType: DataTypes | undefined) {
   // console.log(`${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`);
   if (dataType) {
     const response = await axios.get(
-      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
+      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/123456`,
       {
         // headers: { jwt: currentJwt?.jwt },
       },
     );
-    // console.log(response.data);
-    return response.data;
+    // .catch(function (error) {
+    //   console.log(error);
+    //   const errorMessage = getErrorMessage(error);
+    //   console.log(errorMessage);
+    //   // return { type: 'error', message: errorMessage };
+    // });
+
+    // console.log(response);
+
+    if (response?.status === 200 || response?.status === 201) {
+      return response.data;
+    } else {
+      console.log('Response returned with non-200 status');
+      console.log(response);
+    }
   }
 }
 
@@ -44,15 +63,24 @@ interface EditData extends PostDataBase {
 export async function createDataType(dataType: DataTypes | undefined, data: Models) {
   // const currentJwt = isValidJwt();
   if (dataType && data) {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
-      {
-        ...data,
-        // headers: { jwt: currentJwt?.jwt },
-      },
-    );
-    console.log(response.data);
-    return response.data;
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/123456`,
+        {
+          ...data,
+          // headers: { jwt: currentJwt?.jwt },
+        },
+      );
+      if (response?.status === 200 || response?.status === 201) {
+        return { type: 'success' };
+      } else {
+        console.log(response);
+        return { type: 'error', message: 'Response returned with non-200 status' };
+      }
+    } catch (error) {
+      const errorMessage = getErrorMessage(error);
+      return { type: 'error', message: errorMessage };
+    }
   }
 }
 
@@ -61,7 +89,7 @@ export async function editDataType(
   data: Partial<EditData>,
 ) {
   // const currentJwt = isValidJwt();
-  if (dataType && data.name && data.id) {
+  try {
     const response = await axios.put(
       `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
       {
@@ -69,8 +97,15 @@ export async function editDataType(
         // headers: { jwt: currentJwt?.jwt },
       },
     );
-    console.log(response.data);
-    return response.data;
+    if (response?.status === 200 || response?.status === 201) {
+      return { type: 'success' };
+    } else {
+      console.log(response);
+      return { type: 'error', message: 'Response returned with non-200 status' };
+    }
+  } catch (error) {
+    const errorMessage = getErrorMessage(error);
+    return { type: 'error', message: errorMessage };
   }
 }
 
@@ -78,16 +113,25 @@ export async function deleteDataType(
   dataType: DataTypes | undefined,
   data: Omit<EditData, 'name'>,
 ) {
-  const currentJwt = isValidJwt();
+  // const currentJwt = isValidJwt();
   if (dataType && data.id) {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
-      {
-        headers: { jwt: currentJwt?.jwt },
-        data: { ...data },
-      },
-    );
-    console.log(response.data);
-    return response.data;
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
+        {
+          // headers: { jwt: currentJwt?.jwt },
+          data: { ...data },
+        },
+      );
+      if (response?.status === 200 || response?.status === 201) {
+        return { type: 'success' };
+      } else {
+        console.log(response);
+        return { type: 'error', message: 'Response returned with non-200 status' };
+      }
+    } catch (error) {
+      const errorMessage = getErrorMessage(error);
+      return { type: 'error', message: errorMessage };
+    }
   }
 }

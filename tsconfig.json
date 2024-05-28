@@ -23,7 +23,8 @@
     "paths": {
       "@types": ["types"],
       "@components": ["components"],
-      "@queries": ["queries"]
+      "@queries": ["queries"],
+      "@util": ["util"]
     }
   },
   "include": ["src"],

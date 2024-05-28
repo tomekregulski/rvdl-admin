@@ -9,19 +9,19 @@ interface ColumnTypeWithEditDelete {
   delete: JSX.Element;
 }
 
-export function ArtistTable() {
-  const { artists } = useDataContext();
+export function CategoryTable() {
+  const { categories } = useDataContext();
 
-  const dataWithEditDelete: ColumnTypeWithEditDelete[] | [] = artists
-    ? artists?.map((item) => ({
+  const dataWithEditDelete: ColumnTypeWithEditDelete[] | [] = categories
+    ? categories?.map((item) => ({
         id: item.id,
         name: item.name,
-        edit: <EditDialog dataType="artist" item={item} />,
-        delete: <DeleteDialog dataType="artist" item={item} />,
+        edit: <EditDialog dataType="category" item={item} />,
+        delete: <DeleteDialog dataType="category" item={item} />,
       }))
     : [];
 
-  const columns = artists ? [...Object.keys(artists[0]), 'Edit', 'Delete'] : [];
+  const columns = categories ? [...Object.keys(categories[0]), 'Edit', 'Delete'] : [];
 
   return (
     <table>
