@@ -1,6 +1,5 @@
 import { useDataContext } from '../../contexts/DataContext';
-import { DeleteDialog } from '../Dialog/DeleteDialog';
-import { EditDialog } from '../Dialog/EditDialog';
+import { CreateDialog, DeleteDialog, EditDialog } from '../Dialog';
 
 interface ColumnTypeWithEditDelete {
   id: number;
@@ -24,25 +23,28 @@ export function MediaTypeTable() {
   const columns = mediaTypes ? [...Object.keys(mediaTypes[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map((item) => (
-            <th key={item}>{item}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {dataWithEditDelete &&
-          dataWithEditDelete.map((row) => (
-            <tr key={`row-${row.id}`}>
-              <td key={`id-${row.id}`}>{row.id}</td>
-              <td key={`name-${row.id}`}>{row.name}</td>
-              <td key={`edit-${row.id}`}>{row.edit}</td>
-              <td key={`delete-${row.id}`}>{row.delete}</td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
+    <>
+      <CreateDialog dataType={'media-type'} />
+      <table>
+        <thead>
+          <tr>
+            {columns.map((item) => (
+              <th key={item}>{item}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {dataWithEditDelete &&
+            dataWithEditDelete.map((row) => (
+              <tr key={`row-${row.id}`}>
+                <td key={`id-${row.id}`}>{row.id}</td>
+                <td key={`name-${row.id}`}>{row.name}</td>
+                <td key={`edit-${row.id}`}>{row.edit}</td>
+                <td key={`delete-${row.id}`}>{row.delete}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </>
   );
 }

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { DataTypes } from 'types/Models';
 
-import { CreateDialog } from '../Dialog/CreateDialog';
+// import { CreateDialog } from '../Dialog/CreateDialog';
 import { Select } from '../Select/Select';
 import { ArtistTable } from './ArtistTable';
 import { CategoryTable } from './CategoryTable';
@@ -79,7 +79,6 @@ export function DataTableContainer() {
         />
       </div>
       <div>Data View</div>
-      <CreateDialog dataType={dataType} />
       {dataType && tableMap[dataType]}
     </>
   );

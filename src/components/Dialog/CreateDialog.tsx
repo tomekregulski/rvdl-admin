@@ -3,7 +3,6 @@ import { ReactNode, useState } from 'react';
 // import tw from 'twin.macro';
 import { DataTypes } from 'types/Models';
 
-import { createDataType } from '../../queries';
 import { Create as CreateNameId } from '../Forms/NameId/Create';
 
 export interface CreateDialogProps {
@@ -19,28 +18,6 @@ export function CreateDialog(props: CreateDialogProps) {
   const { dataType } = props;
 
   const [open, setOpen] = useState(false);
-  const [result, setResult] = useState<ResponseType | null>(null);
-  const [name, setName] = useState<string>('');
-
-  async function handleCreate() {
-    if (name === '') {
-      alert('Please enter a name');
-    }
-
-    const response = await createDataType(dataType, { name });
-    if (response?.type === 'success') {
-      setResult({
-        type: 'success',
-        message: `${dataType} ${name} successfully created`,
-      });
-    }
-    if (response?.type === 'error') {
-      setResult({
-        type: 'error',
-        message: response.message,
-      });
-    }
-  }
 
   return (
     <RadixDialog.Root open={open} onOpenChange={setOpen}>
@@ -51,30 +28,7 @@ export function CreateDialog(props: CreateDialogProps) {
           <RadixDialog.Title>{`Create ${dataType}`}</RadixDialog.Title>
           <RadixDialog.Description className="flex flex-col">
             <span>{`This action will create a new ${dataType}.`}</span>
-            <CreateNameId value={name} setValue={setName} />
-            {result?.message}
-            {result?.type === 'success' ? (
-              <button className="text-white" type="button" onClick={() => setOpen(false)}>
-                Close
-              </button>
-            ) : (
-              <>
-                <button
-                  className="text-white"
-                  type="button"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="text-white"
-                  type="button"
-                  onClick={() => handleCreate()}
-                >
-                  Create
-                </button>
-              </>
-            )}
+            <CreateNameId dataType={dataType} setOpen={setOpen} />
           </RadixDialog.Description>
         </RadixDialog.Content>
       </RadixDialog.Portal>

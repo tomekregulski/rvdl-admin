@@ -7,13 +7,14 @@ import {
   DataTypes,
   Location as PerformanceLocation,
   MediaType,
+  Tape,
 } from 'types/Models';
 
 import { deleteDataType } from '../../queries/tableQueries';
 
 export interface DialogProps {
   dataType: DataTypes;
-  item: Artist | Category | MediaType | PerformanceLocation;
+  item: Artist | Category | MediaType | PerformanceLocation | Tape;
 }
 
 export interface ResponseType {
@@ -23,7 +24,7 @@ export interface ResponseType {
 
 export function DeleteDialog(props: DialogProps) {
   const { item, dataType } = props;
-  const { id, name } = item;
+  const { id } = item;
 
   const [open, setOpen] = useState(false);
   const [result, setResult] = useState<ResponseType | null>(null);
@@ -56,7 +57,7 @@ export function DeleteDialog(props: DialogProps) {
         <RadixDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] text-black flex flex-col">
           <RadixDialog.Title>{`Delete ${dataType}`}</RadixDialog.Title>
           <RadixDialog.Description className="flex flex-col">
-            <span>{`This action will delete ${dataType} with ID ${id} and name ${name}.`}</span>
+            <span>{`This action will delete ${dataType} with ID ${id}`}</span>
             <span>
               Please ensure that any dependent items have been deleted before proceeding
             </span>
