@@ -1,9 +1,9 @@
 // import { useQuery } from '@tanstack/react-query';
-import { Select } from 'antd';
 import { useState } from 'react';
 import { DataTypes } from 'types/Models';
 
 import { CreateDialog } from '../Dialog/CreateDialog';
+import { Select } from '../Select/Select';
 import { ArtistTable } from './ArtistTable';
 import { CategoryTable } from './CategoryTable';
 import { EventTable } from './EventTable';
@@ -12,46 +12,6 @@ import { MediaTypeTable } from './MediaTypeTable';
 import { RagaTable } from './RagaTable';
 import { TapeTable } from './TapeTable';
 import { TrackTable } from './TrackTable';
-
-interface DataTypeOptions {
-  label: DataTypes;
-  value: number;
-}
-
-const options: DataTypeOptions[] = [
-  {
-    label: 'track',
-    value: 1,
-  },
-  {
-    label: 'category',
-    value: 2,
-  },
-  {
-    label: 'location',
-    value: 3,
-  },
-  {
-    label: 'event',
-    value: 4,
-  },
-  {
-    label: 'tape',
-    value: 5,
-  },
-  {
-    label: 'raga',
-    value: 6,
-  },
-  {
-    label: 'artist',
-    value: 7,
-  },
-  {
-    label: 'media-type',
-    value: 8,
-  },
-];
 
 const tableMap = {
   track: <TrackTable />,
@@ -65,17 +25,57 @@ const tableMap = {
   user: <p>User Table</p>,
 };
 
+interface DataTypeOptions {
+  label: string;
+  value: DataTypes;
+}
+
 export function DataTableContainer() {
   const [dataType, setDataType] = useState<DataTypes>('location');
   // const [promptCreate, setPromptCreate] = useState<boolean>(false);
+
+  const options: DataTypeOptions[] = [
+    {
+      label: 'Track',
+      value: 'track',
+    },
+    {
+      label: 'Category',
+      value: 'category',
+    },
+    {
+      label: 'Location',
+      value: 'location',
+    },
+    {
+      label: 'Event',
+      value: 'event',
+    },
+    {
+      label: 'Tape',
+      value: 'tape',
+    },
+    {
+      label: 'Raga',
+      value: 'raga',
+    },
+    {
+      label: 'Artist',
+      value: 'artist',
+    },
+    {
+      label: 'Media Type',
+      value: 'media-type',
+    },
+  ];
 
   return (
     <>
       <div>
         <Select
           options={options}
-          placeholder="Select a data type..."
-          onSelect={(_value, option) => void setDataType(option.label)}
+          dataType={dataType}
+          onValueChange={(value: DataTypes) => setDataType(value)}
         />
       </div>
       <div>Data View</div>
