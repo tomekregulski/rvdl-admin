@@ -28,12 +28,8 @@ export function Edit(props: EditDialogProps) {
   });
   const [result, setResult] = useState<ResponseType | null>(null);
   const [isValidForm, setIsValidForm] = useState(false);
-  console.log(isValidForm);
 
   const { tapes, events } = useDataContext();
-
-  console.log(item);
-  console.log(tape);
 
   useEffect(() => {
     if (tape.tapeId !== item.tapeId || tape.eventId !== item.eventId) {
