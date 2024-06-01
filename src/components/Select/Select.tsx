@@ -1,11 +1,11 @@
 import { CheckIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 import * as RadixSelect from '@radix-ui/react-select';
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import { DataTypes } from 'types/Models';
 
 export interface Option {
   value: string;
-  label: ReactNode;
+  label: string;
 }
 
 export interface SelectProps extends RadixSelect.SelectProps {
@@ -49,11 +49,13 @@ export function Select(props: SelectProps) {
           <RadixSelect.Viewport className="bg-black">
             {options.map((option) => (
               <RadixSelect.Item
-                className="flex items-center justify-start gap-[4px] h-[32px] hover:bg-gray-500 hover:cursor-pointer p-4"
+                className="flex items-center justify-start gap-[4px] h-[32px] hover:bg-gray-500 hover:cursor-pointer p-4 text-white"
                 key={option.value}
                 value={option.value}
               >
-                <RadixSelect.ItemText>{option.label}</RadixSelect.ItemText>
+                <RadixSelect.ItemText className="text-white">
+                  {option.label}
+                </RadixSelect.ItemText>
                 <RadixSelect.ItemIndicator>
                   <CheckIcon />
                 </RadixSelect.ItemIndicator>

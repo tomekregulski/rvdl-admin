@@ -5,6 +5,7 @@ import {
   Artist,
   Category,
   DataTypes,
+  Event,
   Location as PerformanceLocation,
   MediaType,
   Tape,
@@ -14,7 +15,7 @@ import { deleteDataType } from '../../queries/tableQueries';
 
 export interface DialogProps {
   dataType: DataTypes;
-  item: Artist | Category | MediaType | PerformanceLocation | Tape;
+  item: Artist | Category | MediaType | PerformanceLocation | Tape | Event;
 }
 
 export interface ResponseType {
