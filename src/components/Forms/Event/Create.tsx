@@ -36,7 +36,7 @@ export function Create() {
 
   const eventNames = events ? events?.map((event) => event.eventName) : [];
 
-  const locationsList = events
+  const locationsList = locations
     ? locations?.map((location) => ({
         label: location.name,
         value: location.id.toString(),

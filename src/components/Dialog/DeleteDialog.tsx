@@ -9,13 +9,14 @@ import {
   Location as PerformanceLocation,
   MediaType,
   Tape,
+  Track,
 } from 'types/Models';
 
 import { deleteDataType } from '../../queries/tableQueries';
 
 export interface DialogProps {
   dataType: DataTypes;
-  item: Artist | Category | MediaType | PerformanceLocation | Tape | Event;
+  item: Artist | Category | MediaType | PerformanceLocation | Tape | Event | Track;
 }
 
 export interface ResponseType {
