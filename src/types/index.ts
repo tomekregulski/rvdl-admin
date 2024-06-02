@@ -1,11 +1,15 @@
 export type {
   Artist,
   Category,
+  DataTypes,
   Event,
   Location,
   MediaType,
-  Models,
+  ModelsCreateUnion,
+  ModelsUnion,
+  ModelsUpdateUnion,
   Raga,
   Tape,
   Track,
+  User,
 } from './Models';

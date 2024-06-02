@@ -1,5 +1,6 @@
 import { useDataContext } from '../../contexts/DataContext';
-import { CreateDialog, DeleteDialog, EditDialog } from '../Dialog';
+import { DeleteDialog } from '../Dialog';
+import { Create, Update } from '../Forms/User';
 import { TableCell } from './common';
 
 export interface ColumnTypeWithEditDelete {
@@ -26,7 +27,7 @@ export function UserTable() {
         subscriptionActive: item.subscriptionActive,
         stripeId: item.stripeId,
         isAdmin: item.isAdmin,
-        edit: <EditDialog dataType="user" item={item} />,
+        edit: <Update item={item} />,
         delete: <DeleteDialog dataType="user" item={item} />,
       }))
     : [];
@@ -35,7 +36,7 @@ export function UserTable() {
 
   return (
     <>
-      <CreateDialog dataType={'user'} />
+      <Create />
       <table>
         <thead>
           <tr>

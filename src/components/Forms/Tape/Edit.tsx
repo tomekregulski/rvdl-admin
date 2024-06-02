@@ -81,7 +81,7 @@ export function Edit(props: EditDialogProps) {
             <Select
               options={tapeIds}
               defaultValue={tape.tapeId?.toString()}
-              dataType="tape"
+              placeholder="Select Tape Id"
               onValueChange={(value) => {
                 setTape((prev) => {
                   return { ...prev, tapeId: parseInt(value) };
@@ -90,7 +90,7 @@ export function Edit(props: EditDialogProps) {
             />
             <Select
               options={eventIds}
-              dataType="event"
+              placeholder="Select Event Id"
               defaultValue={tape.eventId?.toString()}
               onValueChange={(value) => {
                 setTape((prev) => {

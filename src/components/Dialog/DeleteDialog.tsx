@@ -10,13 +10,14 @@ import {
   MediaType,
   Tape,
   Track,
+  User,
 } from 'types/Models';
 
 import { deleteDataType } from '../../queries/tableQueries';
 
 export interface DialogProps {
   dataType: DataTypes;
-  item: Artist | Category | MediaType | PerformanceLocation | Tape | Event | Track;
+  item: Artist | Category | MediaType | PerformanceLocation | Tape | Event | Track | User;
 }
 
 export interface ResponseType {

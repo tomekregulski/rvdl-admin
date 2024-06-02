@@ -1,6 +1,5 @@
-import { Models } from '@types';
+import type { DataTypes, ModelsCreateUnion, ModelsUpdateUnion } from '@types';
 import axios from 'axios';
-import { DataTypes } from 'types/Models';
 
 import { getErrorMessage } from '../util/getErrorMessage';
 import { isValidJwt } from '../util/isValidJwt';
@@ -60,7 +59,10 @@ interface EditData extends PostDataBase {
   id: number;
 }
 
-export async function createDataType(dataType: DataTypes | undefined, data: Models) {
+export async function createDataType(
+  dataType: DataTypes | undefined,
+  data: ModelsCreateUnion,
+) {
   // const currentJwt = isValidJwt();
   if (dataType && data) {
     try {
@@ -84,7 +86,10 @@ export async function createDataType(dataType: DataTypes | undefined, data: Mode
   }
 }
 
-export async function editDataType(dataType: DataTypes | undefined, data: Models) {
+export async function editDataType(
+  dataType: DataTypes | undefined,
+  data: ModelsUpdateUnion,
+) {
   // const currentJwt = isValidJwt();
   try {
     const response = await axios.put(

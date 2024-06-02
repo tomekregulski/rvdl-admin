@@ -80,11 +80,33 @@ export interface MediaType {
   tracks: Track[];
 }
 
-export type Models =
-  | Omit<Track, 'id'>
+export type ModelsUnion =
+  | Omit<Track, 'mediaType' | 'tape' | 'raga'>
+  | Omit<Tape, 'event'>
+  | Location
+  | Omit<Event, 'location' | 'category' | 'tapes'>
+  | Raga
+  | Category
+  | Artist
+  | MediaType
+  | User;
+
+export type ModelsUpdateUnion =
+  | Omit<Track, 'mediaType' | 'tape' | 'raga'>
+  | Omit<Tape, 'event'>
+  | Location
+  | Omit<Event, 'location' | 'category' | 'tapes'>
+  | Raga
+  | Category
+  | Artist
+  | MediaType
+  | User;
+
+export type ModelsCreateUnion =
+  | Omit<Track, 'id' | 'mediaType' | 'tape' | 'raga'>
   | Omit<Tape, 'event' | 'id'>
   | Omit<Location, 'id'>
-  | Omit<Event, 'id'>
+  | Omit<Event, 'id' | 'location' | 'category' | 'tapes'>
   | Omit<Raga, 'id'>
   | Omit<Category, 'id'>
   | Omit<Artist, 'id' | 'primaryTracks'>

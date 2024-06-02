@@ -36,7 +36,6 @@ export function Create() {
       setIsValidForm(true);
     }
   });
-  // console.log(isValidForm);
 
   async function handleCreate() {
     console.log(isValidForm);
@@ -89,7 +88,7 @@ export function Create() {
             />
             <Select
               options={eventIds}
-              dataType="event"
+              placeholder="Select Event Id"
               onValueChange={(value) => {
                 setTape((prev) => {
                   return { ...prev, eventId: parseInt(value) };

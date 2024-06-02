@@ -152,7 +152,6 @@ export function Update(props: EditDialogProps) {
           <RadixDialog.Title>{`Update Event`}</RadixDialog.Title>
           <RadixDialog.Description className="flex flex-col">
             <span>{`This action will update Event with ID ${id}.`}</span>
-            {/* <CreateNameId dataType={dataType} setOpen={setOpen} /> */}
             <input
               className="bg-white border p-2"
               value={track.trackId}
@@ -163,7 +162,8 @@ export function Update(props: EditDialogProps) {
                 });
               }}
             />
-            <input
+            {/* We should probably never manually changes the play count */}
+            {/* <input
               className="bg-white border p-2"
               value={track.plays}
               type="number"
@@ -173,10 +173,10 @@ export function Update(props: EditDialogProps) {
                   return { ...prev, plays: parseInt(event.target.value) };
                 });
               }}
-            />
+            /> */}
             <Select
               options={tapesList}
-              dataType="tape"
+              placeholder="Select Tape ID"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, tapeId: parseInt(value) };
@@ -185,7 +185,7 @@ export function Update(props: EditDialogProps) {
             />
             <Select
               options={ragasList}
-              dataType="raga"
+              placeholder="Select Raga"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, ragaId: parseInt(value) };
@@ -194,7 +194,7 @@ export function Update(props: EditDialogProps) {
             />
             <Select
               options={artistsList}
-              dataType="artist"
+              placeholder="Select Artist"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, primaryArtistId: parseInt(value) };
@@ -203,7 +203,7 @@ export function Update(props: EditDialogProps) {
             />
             <Select
               options={mediaTypesList}
-              dataType="media-type"
+              placeholder="Select Media Type"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, mediaTypeId: parseInt(value) };
@@ -215,7 +215,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Alap"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -228,7 +228,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Jor"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -241,7 +241,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Jhalla"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -254,7 +254,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Slow Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -267,7 +267,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Medium Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -280,7 +280,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Fast Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -293,7 +293,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Master Tape"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -306,7 +306,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Public Track"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -319,7 +319,7 @@ export function Update(props: EditDialogProps) {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Accompanied"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {

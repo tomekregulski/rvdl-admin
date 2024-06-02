@@ -50,14 +50,24 @@ export const DataProvider = (props: DataContextProps) => {
   const [tapes, setTapes] = useState<Tape[] | null>(null);
   const [events, setEvents] = useState<Event[] | null>(null);
   const [artists, setArtists] = useState<Artist[] | null>(null);
+  const [users, setUsers] = useState<User[] | null>(null);
   const [mediaTypes, setMediaTypes] = useState<MediaType[] | null>(null);
   const [tracks, setTracks] = useState<Track[] | null>(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      const { locations, ragas, tapes, events, artists, categories, mediaTypes, tracks } =
-        await getAllData();
+      const {
+        locations,
+        ragas,
+        tapes,
+        events,
+        artists,
+        categories,
+        mediaTypes,
+        tracks,
+        users,
+      } = await getAllData();
 
       setArtists(artists);
       setCategories(categories);
@@ -67,6 +77,7 @@ export const DataProvider = (props: DataContextProps) => {
       setEvents(events);
       setMediaTypes(mediaTypes);
       setTracks(tracks);
+      setUsers(users);
       setIsDataLoaded(true);
     }
     if (!isDataLoaded) {
@@ -107,6 +118,7 @@ export const DataProvider = (props: DataContextProps) => {
       artists,
       mediaTypes,
       tracks,
+      users,
       getMappedData,
     }),
     [
@@ -119,6 +131,7 @@ export const DataProvider = (props: DataContextProps) => {
       categories,
       mediaTypes,
       tracks,
+      users,
       getMappedData,
     ],
   );

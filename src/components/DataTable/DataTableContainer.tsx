@@ -70,16 +70,16 @@ export function DataTableContainer() {
   ];
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
+      <div>Data View</div>
       <div>
         <Select
           options={options}
-          dataType={dataType}
+          placeholder="Select DataType"
           onValueChange={(value: DataTypes) => setDataType(value)}
         />
       </div>
-      <div>Data View</div>
       {dataType && tableMap[dataType]}
-    </>
+    </div>
   );
 }

@@ -23,6 +23,8 @@ export function Create() {
   const [result, setResult] = useState<ResponseType | null>(null);
   const [isValidForm, setIsValidForm] = useState(false);
 
+  // TODO: Check for existing raga
+  // Serer-side check already exists, but client side would be nice as well
   // const { ragas } = useDataContext();
 
   // const ragaNames = ragas
@@ -111,14 +113,12 @@ export function Create() {
           <RadixDialog.Title>{`Create Raga`}</RadixDialog.Title>
           <RadixDialog.Description className="flex flex-col">
             <span>{`This action will create a new Raga.`}</span>
-            {/* <CreateNameId dataType={dataType} setOpen={setOpen} /> */}
             <input
               className="bg-white border p-2"
               value={raga.name}
               placeholder="Name"
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setRaga((prev) => {
-                  // const value = event.target.value ? parseInt(event.target.value) : null;
                   return { ...prev, name: event.target.value };
                 });
               }}
@@ -129,7 +129,6 @@ export function Create() {
               placeholder="Alternate spellings (comma-separated, no spaces)"
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setRaga((prev) => {
-                  // const value = event.target.value ? parseInt(event.target.value) : null;
                   return { ...prev, alternateSpelling: event.target.value };
                 });
               }}
@@ -140,7 +139,6 @@ export function Create() {
               placeholder="Time"
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setRaga((prev) => {
-                  // const value = event.target.value ? parseInt(event.target.value) : null;
                   return { ...prev, time: event.target.value };
                 });
               }}
@@ -151,7 +149,6 @@ export function Create() {
               placeholder="Rasa"
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setRaga((prev) => {
-                  // const value = event.target.value ? parseInt(event.target.value) : null;
                   return { ...prev, rasa: event.target.value };
                 });
               }}

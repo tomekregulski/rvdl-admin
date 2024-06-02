@@ -1,14 +1,11 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDataContext } from '../../../contexts/DataContext';
 import { createDataType } from '../../../queries';
 import { Select } from '../../Select/Select';
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
-}
+import type { ResponseType } from '../common';
 
 export interface EventObject {
   eventName: string;
@@ -71,7 +68,6 @@ export function Create() {
       return;
     }
 
-    // @ts-expect-error missing category, location, types
     const response = await createDataType('event', {
       eventName: event.eventName,
       date: event.date,
@@ -125,7 +121,7 @@ export function Create() {
             />
             <Select
               options={locationsList}
-              dataType="location"
+              placeholder="Select Location"
               onValueChange={(value) => {
                 setEvent((prev) => {
                   return { ...prev, locationId: parseInt(value) };
@@ -134,7 +130,7 @@ export function Create() {
             />
             <Select
               options={categoriesList}
-              dataType="category"
+              placeholder="Select Category"
               onValueChange={(value) => {
                 setEvent((prev) => {
                   return { ...prev, categoryId: parseInt(value) };

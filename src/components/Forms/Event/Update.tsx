@@ -129,7 +129,7 @@ export function Update(props: EditDialogProps) {
             />
             <Select
               options={locationsList}
-              dataType="location"
+              placeholder="Select Location"
               defaultValue={event.locationId ? event.locationId.toString() : undefined}
               onValueChange={(value) => {
                 setEvent((prev) => {
@@ -139,7 +139,7 @@ export function Update(props: EditDialogProps) {
             />
             <Select
               options={categoriesList}
-              dataType="category"
+              placeholder="Select Category"
               defaultValue={event.categoryId ? event.categoryId.toString() : undefined}
               onValueChange={(value) => {
                 setEvent((prev) => {

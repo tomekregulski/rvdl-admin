@@ -117,7 +117,6 @@ export function Create() {
       return;
     }
 
-    // @ts-expect-error missing category, location, types
     const response = await createDataType('track', {
       trackId: track.trackId!,
       tapeId: track.tapeId!,
@@ -253,7 +252,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              placeholder="Has Sloe Gat"
+              placeholder="Has Slow Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
