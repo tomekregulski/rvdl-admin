@@ -9,11 +9,11 @@ export function MetricsContainer() {
   });
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <div>Metrics</div>
       {isLoading && <div>loading...</div>}
       {data && <Charts />}
       {isError && <div>An error occured</div>}
-    </>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import { DataTableContainer } from '../components/DataTable/Table/DataTableContainer';
+import { DataTableContainer } from '../components/DataTable/DataTableContainer';
 import { MetricsContainer } from '../components/Metrics/MetricsContainer';
 
 type Views = 'dataTable' | 'metrics';

@@ -52,11 +52,21 @@ export interface Track {
   audioQuality: string;
   master: boolean;
   mediaTypeId: number;
-  mediaType: MediaType;
   public: boolean;
   url: string;
+  mediaType: MediaType;
   tape: Tape;
   raga: Raga;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  subscriptionActive: boolean;
+  stripeId: string;
+  isAdmin: boolean;
 }
 
 export interface Artist {
@@ -70,18 +80,42 @@ export interface MediaType {
   tracks: Track[];
 }
 
-export type Models =
-  | Track
-  | Tape
+export type ModelsUnion =
+  | Omit<Track, 'mediaType' | 'tape' | 'raga'>
+  | Omit<Tape, 'event'>
   | Location
-  | Event
+  | Omit<Event, 'location' | 'category' | 'tapes'>
   | Raga
   | Category
   | Artist
-  | MediaType;
+  | MediaType
+  | User;
+
+export type ModelsUpdateUnion =
+  | Omit<Track, 'mediaType' | 'tape' | 'raga'>
+  | Omit<Tape, 'event'>
+  | Location
+  | Omit<Event, 'location' | 'category' | 'tapes'>
+  | Raga
+  | Category
+  | Artist
+  | MediaType
+  | User;
+
+export type ModelsCreateUnion =
+  | Omit<Track, 'id' | 'mediaType' | 'tape' | 'raga'>
+  | Omit<Tape, 'event' | 'id'>
+  | Omit<Location, 'id'>
+  | Omit<Event, 'id' | 'location' | 'category' | 'tapes'>
+  | Omit<Raga, 'id'>
+  | Omit<Category, 'id'>
+  | Omit<Artist, 'id' | 'primaryTracks'>
+  | Omit<MediaType, 'id' | 'tracks'>
+  | Omit<User, 'id'>;
 
 export type DataTypes =
   | 'artist'
+  | 'category'
   | 'event'
   | 'location'
   | 'media-type'

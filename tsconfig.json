@@ -22,7 +22,9 @@
     "baseUrl": "./src",
     "paths": {
       "@types": ["types"],
-      "@components": ["components"]
+      "@components": ["components"],
+      "@queries": ["queries"],
+      "@util": ["util"]
     }
   },
   "include": ["src"],
