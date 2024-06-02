@@ -9,6 +9,7 @@ export async function getAllData() {
   const mediaTypes = await getDataType('media-type');
   const tracks = await getDataType('track');
   const categories = await getDataType('category');
+  console.log(categories);
 
   const allData = {
     artists,

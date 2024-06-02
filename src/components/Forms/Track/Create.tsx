@@ -1,14 +1,11 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDataContext } from '../../../contexts/DataContext';
 import { createDataType } from '../../../queries';
 import { Select } from '../../Select/Select';
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
-}
+import type { ResponseType } from '../common';
 
 export interface TrackObject {
   trackId: number | undefined;
@@ -178,7 +175,7 @@ export function Create() {
             />
             <Select
               options={tapesList}
-              dataType="tape"
+              placeholder="Select Tape ID"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, tapeId: parseInt(value) };
@@ -187,7 +184,7 @@ export function Create() {
             />
             <Select
               options={ragasList}
-              dataType="raga"
+              placeholder="Select Raga"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, ragaId: parseInt(value) };
@@ -196,7 +193,7 @@ export function Create() {
             />
             <Select
               options={artistsList}
-              dataType="artist"
+              placeholder="Select Artist"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, primaryArtistId: parseInt(value) };
@@ -205,7 +202,7 @@ export function Create() {
             />
             <Select
               options={mediaTypesList}
-              dataType="media-type"
+              placeholder="Select Media Type"
               onValueChange={(value) => {
                 setTrack((prev) => {
                   return { ...prev, mediaTypeId: parseInt(value) };
@@ -217,7 +214,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Alap"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -230,7 +227,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Jor"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -243,7 +240,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Jhalla"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -256,7 +253,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Sloe Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -269,7 +266,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Medium Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -282,7 +279,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Has Fast Gat"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -295,7 +292,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Master Tape"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -308,7 +305,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Public Track"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {
@@ -321,7 +318,7 @@ export function Create() {
                 { label: 'true', value: '1' },
                 { label: 'false', value: '0' },
               ]}
-              dataType="media-type"
+              placeholder="Is Accompanied"
               defaultValue="0"
               onValueChange={(value) => {
                 setTrack((prev) => {

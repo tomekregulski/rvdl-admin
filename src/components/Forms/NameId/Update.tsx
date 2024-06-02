@@ -1,4 +1,5 @@
-import { ChangeEvent, Dispatch, ReactNode, useState } from 'react';
+import type { ChangeEvent, Dispatch } from 'react';
+import { useState } from 'react';
 import {
   Artist,
   Category,
@@ -8,11 +9,7 @@ import {
 } from 'types/Models';
 
 import { editDataType } from '../../../queries';
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
-}
+import type { ResponseType } from '../common';
 
 export interface UpdateNameIdProps {
   dataType: DataTypes;

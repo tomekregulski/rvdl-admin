@@ -1,29 +1,10 @@
 import { Raga } from '@types';
-import { ReactNode } from 'react';
 
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Raga';
+import { TableCell } from './common';
 
-interface TableCellProps {
-  children: ReactNode;
-  // cellKey: string;
-}
-
-function TableCell(props: TableCellProps) {
-  const { children } = props;
-  return (
-    <td
-      style={{
-        maxWidth: '150px',
-        textOverflow: 'hidden',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {children}
-    </td>
-  );
-}
 interface ColumnTypeWithEditDelete extends Omit<Raga, 'tracks'> {
   edit: JSX.Element;
   delete: JSX.Element;

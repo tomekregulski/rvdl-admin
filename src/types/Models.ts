@@ -52,11 +52,21 @@ export interface Track {
   audioQuality: string;
   master: boolean;
   mediaTypeId: number;
-  mediaType: MediaType;
   public: boolean;
   url: string;
+  mediaType: MediaType;
   tape: Tape;
   raga: Raga;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  subscriptionActive: boolean;
+  stripeId: string;
+  isAdmin: boolean;
 }
 
 export interface Artist {
@@ -72,13 +82,14 @@ export interface MediaType {
 
 export type Models =
   | Omit<Track, 'id'>
-  | Omit<Tape, 'id'>
+  | Omit<Tape, 'event' | 'id'>
   | Omit<Location, 'id'>
   | Omit<Event, 'id'>
   | Omit<Raga, 'id'>
   | Omit<Category, 'id'>
   | Omit<Artist, 'id' | 'primaryTracks'>
-  | Omit<MediaType, 'id' | 'tracks'>;
+  | Omit<MediaType, 'id' | 'tracks'>
+  | Omit<User, 'id'>;
 
 export type DataTypes =
   | 'artist'

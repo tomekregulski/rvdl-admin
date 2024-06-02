@@ -1,12 +1,6 @@
 import { useDataContext } from '../../contexts/DataContext';
 import { CreateDialog, DeleteDialog, EditDialog } from '../Dialog';
-
-interface ColumnTypeWithEditDelete {
-  id: number;
-  name: string;
-  edit: JSX.Element;
-  delete: JSX.Element;
-}
+import { ColumnTypeWithEditDelete, TableCell } from './common';
 
 export function CategoryTable() {
   const { categories } = useDataContext();
@@ -37,10 +31,10 @@ export function CategoryTable() {
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
               <tr key={`row-${row.id}`}>
-                <td key={`id-${row.id}`}>{row.id}</td>
-                <td key={`name-${row.id}`}>{row.name}</td>
-                <td key={`edit-${row.id}`}>{row.edit}</td>
-                <td key={`delete-${row.id}`}>{row.delete}</td>
+                <TableCell key={`id-${row.id}`}>{row.id}</TableCell>
+                <TableCell key={`name-${row.id}`}>{row.name}</TableCell>
+                <TableCell key={`edit-${row.id}`}>{row.edit}</TableCell>
+                <TableCell key={`delete-${row.id}`}>{row.delete}</TableCell>
               </tr>
             ))}
         </tbody>

@@ -1,14 +1,10 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
 
 // import { useDataContext } from '../../../contexts/DataContext';
 import { createDataType } from '../../../queries';
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
-}
-
+import type { ResponseType } from '../common';
 export interface RagaObject {
   name: string;
   alternateSpelling: string;

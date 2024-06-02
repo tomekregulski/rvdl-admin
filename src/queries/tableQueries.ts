@@ -84,10 +84,7 @@ export async function createDataType(dataType: DataTypes | undefined, data: Mode
   }
 }
 
-export async function editDataType(
-  dataType: DataTypes | undefined,
-  data: Partial<EditData>,
-) {
+export async function editDataType(dataType: DataTypes | undefined, data: Models) {
   // const currentJwt = isValidJwt();
   try {
     const response = await axios.put(

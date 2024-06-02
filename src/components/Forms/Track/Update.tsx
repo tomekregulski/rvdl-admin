@@ -1,20 +1,17 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
 import type { Track } from 'types/Models';
 
 import { useDataContext } from '../../../contexts/DataContext';
 // import { useDataContext } from '../../../contexts/DataContext';
 import { editDataType } from '../../../queries/tableQueries';
 import { Select } from '../../Select/Select';
-import { TrackObject } from './Create';
+import type { ResponseType } from '../common';
+import type { TrackObject } from './Create';
 
 export interface EditDialogProps {
   item: Track;
-}
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
 }
 
 export function Update(props: EditDialogProps) {

@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, ReactNode, useState } from 'react';
-import { DataTypes } from 'types/Models';
+import type { DataTypes } from 'types/Models';
 
 import { createDataType } from '../../../queries';
 

@@ -1,28 +1,9 @@
 import { Track } from '@types';
-import { ReactNode } from 'react';
 
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Track';
-
-interface TableCellProps {
-  children: ReactNode;
-}
-
-function TableCell(props: TableCellProps) {
-  const { children } = props;
-  return (
-    <td
-      style={{
-        maxWidth: '150px',
-        textOverflow: 'hidden',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {children}
-    </td>
-  );
-}
+import { TableCell } from './common';
 interface ColumnTypeWithEditDelete extends Omit<Track, 'mediaType' | 'tape' | 'raga'> {
   edit: JSX.Element;
   delete: JSX.Element;

@@ -7,6 +7,7 @@ import type {
   Raga,
   Tape,
   Track,
+  User,
 } from '@types';
 import {
   createContext,
@@ -36,6 +37,7 @@ interface DataState {
   categories: Category[] | null;
   mediaTypes: MediaType[] | null;
   tracks: Track[] | null;
+  users: User[] | null;
   getMappedData: (dataType: DataTypes) => unknown;
 }
 

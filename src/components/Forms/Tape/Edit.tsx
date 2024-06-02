@@ -1,20 +1,16 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // import tw from 'twin.macro';
 import type { Tape } from 'types/Models';
 
 import { useDataContext } from '../../../contexts/DataContext';
 import { editDataType } from '../../../queries/tableQueries';
 import { Select } from '../../Select/Select';
-import { TapeObject } from './Create';
+import type { ResponseType } from '../common';
+import type { TapeObject } from './Create';
 
 export interface EditDialogProps {
   item: Tape;
-}
-
-export interface ResponseType {
-  type: 'error' | 'success';
-  message: string | ReactNode;
 }
 
 export function Edit(props: EditDialogProps) {

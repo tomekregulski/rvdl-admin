@@ -1,16 +1,4 @@
-// import { ReactNode } from 'react';
-// import { DataTypes } from 'types/Models';
-
-// interface BaseData {
-//   id: number;
-// }
-
-// export interface Data extends BaseData {}
-
-// export interface DataTableProps {
-//   data?: Data[];
-//   dataType: DataTypes;
-// }
+import { ColumnTypeWithEditDelete, TableCell } from './common';
 
 const tableButtonStyles = { background: 'rgb(36,36,36)' };
 interface NameIdData {
@@ -28,13 +16,6 @@ const fakeData: NameIdData[] = [
     name: 'two',
   },
 ];
-
-interface ColumnTypeWithEditDelete {
-  id: number;
-  name: string;
-  edit: JSX.Element;
-  delete: JSX.Element;
-}
 
 function handleEdit(id: number) {
   console.log(id);
@@ -81,10 +62,10 @@ export function NameIdTable(props: { data: Location[] }) {
       <tbody>
         {dataWithEditDelete.map((row) => (
           <tr key={`row-${row.id}`}>
-            <td key={`id-${row.id}`}>{row.id}</td>
-            <td key={`name-${row.id}`}>{row.name}</td>
-            <td key={`edit-${row.id}`}>{row.edit}</td>
-            <td key={`delete-${row.id}`}>{row.delete}</td>
+            <TableCell key={`id-${row.id}`}>{row.id}</TableCell>
+            <TableCell key={`name-${row.id}`}>{row.name}</TableCell>
+            <TableCell key={`edit-${row.id}`}>{row.edit}</TableCell>
+            <TableCell key={`delete-${row.id}`}>{row.delete}</TableCell>
           </tr>
         ))}
       </tbody>
