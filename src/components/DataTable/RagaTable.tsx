@@ -3,7 +3,7 @@ import { Raga } from '@types';
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Raga';
-import { TableCell } from './common';
+import { TableCell, TableWrapper } from './common';
 
 interface ColumnTypeWithEditDelete extends Omit<Raga, 'tracks'> {
   edit: JSX.Element;
@@ -28,7 +28,7 @@ export function RagaTable() {
   const columns = ragas ? [...Object.keys(ragas[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <>
+    <TableWrapper>
       <Create />
       <table
         style={{
@@ -47,6 +47,7 @@ export function RagaTable() {
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
               <tr
+                className="border"
                 key={`row-${row.id}`}
                 style={{
                   textOverflow: 'hidden',
@@ -66,6 +67,6 @@ export function RagaTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }

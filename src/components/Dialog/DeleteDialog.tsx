@@ -57,10 +57,10 @@ export function DeleteDialog(props: DialogProps) {
       <RadixDialog.Trigger>Delete</RadixDialog.Trigger>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 bg-[rgba(1,1,1,.6)]" />
-        <RadixDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] text-black flex flex-col">
+        <RadixDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] text-black flex flex-col gap-4">
           <RadixDialog.Title>{`Delete ${dataType}`}</RadixDialog.Title>
-          <RadixDialog.Description className="flex flex-col">
-            <span>{`This action will delete ${dataType} with ID ${id}`}</span>
+          <RadixDialog.Description className="flex flex-col gap-4">
+            <span>{`This action will delete $the entry for ${dataType} "${name}" (ID: ${id}).`}</span>
             <span>
               Please ensure that any dependent items have been deleted before proceeding
             </span>

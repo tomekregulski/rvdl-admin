@@ -45,7 +45,7 @@ export function HomePage() {
   const otherView = view === 'metrics' ? 'Data Table' : 'Metrics';
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center gap-4">
       <button
         type="button"
         onClick={() => setView(view === 'metrics' ? 'dataTable' : 'metrics')}

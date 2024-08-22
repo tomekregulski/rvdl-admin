@@ -3,7 +3,7 @@ import { Track } from '@types';
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Track';
-import { TableCell } from './common';
+import { TableCell, TableWrapper } from './common';
 interface ColumnTypeWithEditDelete extends Omit<Track, 'mediaType' | 'tape' | 'raga'> {
   edit: JSX.Element;
   delete: JSX.Element;
@@ -44,7 +44,7 @@ export function TrackTable() {
   const unusedColumns = ['tape', 'mediaType', 'raga'];
 
   return (
-    <>
+    <TableWrapper>
       <Create />
       <table
         style={{
@@ -67,6 +67,7 @@ export function TrackTable() {
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
               <tr
+                className="border"
                 key={`row-${row.id}`}
                 style={{
                   textOverflow: 'hidden',
@@ -114,6 +115,6 @@ export function TrackTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }
