@@ -1,14 +1,20 @@
 import { AxiosError } from 'axios';
 
+const supportEmail = import.meta.env.VITE_RVDL_EMAIL_ADDRESS;
+
 export function getErrorMessage(error: string | Error | unknown) {
-  console.log(error);
   let errorMessage = '';
+  let errorCode: number | undefined;
   if (typeof error === 'string') {
     errorMessage = error;
   } else if (error instanceof AxiosError) {
     errorMessage =
-      error.message ??
-      'a server error has occured, and a detailed message was not returned. Please contact support at roopvermadigitallibrary@gmail.com';
+      error.response?.data.error.message ??
+      `A server error has occured, and a detailed message was not returned. Please contact support at ${supportEmail}`;
+    errorCode = error.response?.data.errorCode;
   }
-  return errorMessage;
+
+  console.error('errorMessage: ', errorMessage);
+
+  return { errorMessage, errorCode };
 }

@@ -21,7 +21,7 @@ export function TableCell(props: TableCellProps) {
   const { children } = props;
   return (
     <td
-      className="px-4"
+      className="px-4 border"
       // className="max-w-[150px] overflow-hidden whitespace-nowrap text-red"
       style={{
         maxWidth: '250px',

@@ -1,6 +1,10 @@
-import type { DataTypes, ModelsCreateUnion, ModelsUpdateUnion } from '@types';
 import axios from 'axios';
 
+import type {
+  DataTypes,
+  ModelsCreateUnion,
+  ModelsUpdateUnion,
+} from '../../src/types/index';
 import { getErrorMessage } from '../util/getErrorMessage';
 import { isValidJwt } from '../util/isValidJwt';
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -59,37 +63,54 @@ interface EditData extends PostDataBase {
   id: number;
 }
 
+type SuccessResponseType = {
+  type: 'success';
+  // message?: string;
+};
+type ErrorResponseType = {
+  type: 'error';
+  message: string;
+};
+
+type ResponseType = SuccessResponseType | ErrorResponseType;
+
 export async function createDataType(
-  dataType: DataTypes | undefined,
+  dataType: DataTypes,
   data: ModelsCreateUnion,
-) {
-  // const currentJwt = isValidJwt();
-  if (dataType && data) {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/123456`,
-        {
-          ...data,
-          // headers: { jwt: currentJwt?.jwt },
-        },
-      );
-      if (response?.status === 200 || response?.status === 201) {
-        return { type: 'success' };
-      } else {
-        console.log(response);
-        return { type: 'error', message: 'Response returned with non-200 status' };
-      }
-    } catch (error) {
-      const errorMessage = getErrorMessage(error);
-      return { type: 'error', message: errorMessage };
+): Promise<ResponseType> {
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/123456`,
+      {
+        ...data,
+        // headers: { jwt: currentJwt?.jwt },
+      },
+    );
+    if (response?.status === 200 || response?.status === 201) {
+      const successObj: SuccessResponseType = { type: 'success' };
+      return successObj;
+    } else {
+      console.log(response);
+      const errorObj: ErrorResponseType = {
+        type: 'error',
+        // errorMessage: {
+        //   errorMessage: 'Response returned with non-200 status',
+        //   errorCode: undefined,
+        // },
+        message: 'Response returned with non-200 status',
+      };
+      return errorObj;
     }
+  } catch (error) {
+    const errorMessage = getErrorMessage(error);
+    return { type: 'error', message: errorMessage.errorMessage };
   }
 }
 
 export async function editDataType(
   dataType: DataTypes | undefined,
   data: ModelsUpdateUnion,
-) {
+): Promise<ResponseType> {
   // const currentJwt = isValidJwt();
   try {
     const response = await axios.put(
@@ -107,7 +128,7 @@ export async function editDataType(
     }
   } catch (error) {
     const errorMessage = getErrorMessage(error);
-    return { type: 'error', message: errorMessage };
+    return { type: 'error', message: errorMessage.errorMessage };
   }
 }
 

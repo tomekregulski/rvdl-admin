@@ -35,6 +35,9 @@ importers:
       axios:
         specifier: ^1.4.0
         version: 1.6.8
+      emailjs-com:
+        specifier: ^3.2.0
+        version: 3.2.0
       jwt-decode:
         specifier: ^3.1.2
         version: 3.1.2
@@ -1398,6 +1401,11 @@ packages:
 
   electron-to-chromium@1.4.756:
     resolution: {integrity: sha512-RJKZ9+vEBMeiPAvKNWyZjuYyUqMndcP1f335oHqn3BEQbs2NFtVrnK5+6Xg5wSM9TknNNpWghGDUCKGYF+xWXw==}
+
+  emailjs-com@3.2.0:
+    resolution: {integrity: sha512-Prbz3E1usiAwGjMNYRv6EsJ5c373cX7/AGnZQwOfrpNJrygQJ15+E9OOq4pU8yC977Z5xMetRfc3WmDX6RcjAA==}
+    engines: {node: '>=12.0.0'}
+    deprecated: The SDK name changed to @emailjs/browser
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4029,6 +4037,8 @@ snapshots:
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.4.756: {}
+
+  emailjs-com@3.2.0: {}
 
   emoji-regex@8.0.0: {}
 
