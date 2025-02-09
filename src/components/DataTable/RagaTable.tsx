@@ -1,6 +1,5 @@
-import { Raga } from '@types';
-
 import { useDataContext } from '../../contexts/DataContext';
+import { Raga } from '../../types/index';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Raga';
 import { TableCell, TableWrapper } from './common';

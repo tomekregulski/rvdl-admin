@@ -1,10 +1,10 @@
-import { Views } from '@types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { Banner } from '../components/Banner/Banner';
 import { DataTableContainer } from '../components/DataTable/DataTableContainer';
 import { MetricsContainer } from '../components/Metrics/MetricsContainer';
+import { Views } from '../types';
 
 const key = import.meta.env.VITE_API_KEY;
 

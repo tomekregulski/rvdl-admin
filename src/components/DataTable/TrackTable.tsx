@@ -1,4 +1,4 @@
-import { Track } from '@types';
+import { Track } from '../../types/index';
 
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';

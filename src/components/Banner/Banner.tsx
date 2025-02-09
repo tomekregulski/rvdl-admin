@@ -1,5 +1,6 @@
-import { Views } from '@types';
 import { Dispatch } from 'react';
+
+import { Views } from '../../types';
 
 interface BannerProps {
   updateView: Dispatch<React.SetStateAction<Views>>;

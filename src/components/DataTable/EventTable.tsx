@@ -1,6 +1,5 @@
-import { Event } from '@types';
-
 import { useDataContext } from '../../contexts/DataContext';
+import { Event } from '../../types/index';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Event';
 import { TableCell, TableWrapper } from './common';

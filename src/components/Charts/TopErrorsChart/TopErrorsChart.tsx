@@ -1,4 +1,3 @@
-import { TDateISO } from '@types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import {
@@ -13,6 +12,7 @@ import {
   YAxis,
 } from 'recharts';
 
+import { TDateISO } from '../../../types';
 import { Select } from '../../Select/Select';
 import { getTimeWindows } from './getTimeWindows';
 
