@@ -155,7 +155,7 @@ export function Create() {
 
   return (
     <RadixDialog.Root open={open} onOpenChange={setOpen}>
-      <RadixDialog.Trigger>Create Track</RadixDialog.Trigger>
+      <RadixDialog.Trigger className="w-[150px]">Create Track</RadixDialog.Trigger>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="fixed inset-0 bg-[rgba(1,1,1,.6)]" />
         <RadixDialog.Content className="fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] text-black flex flex-col">

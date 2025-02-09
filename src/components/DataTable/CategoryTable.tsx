@@ -1,6 +1,6 @@
 import { useDataContext } from '../../contexts/DataContext';
 import { CreateDialog, DeleteDialog, EditDialog } from '../Dialog';
-import { ColumnTypeWithEditDelete, TableCell } from './common';
+import { ColumnTypeWithEditDelete, TableCell, TableWrapper } from './common';
 
 export function CategoryTable() {
   const { categories } = useDataContext();
@@ -17,7 +17,7 @@ export function CategoryTable() {
   const columns = categories ? [...Object.keys(categories[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <>
+    <TableWrapper>
       <CreateDialog dataType={'category'} />
       <table>
         <thead>
@@ -30,7 +30,7 @@ export function CategoryTable() {
         <tbody>
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
-              <tr key={`row-${row.id}`}>
+              <tr className="border" key={`row-${row.id}`}>
                 <TableCell key={`id-${row.id}`}>{row.id}</TableCell>
                 <TableCell key={`name-${row.id}`}>{row.name}</TableCell>
                 <TableCell key={`edit-${row.id}`}>{row.edit}</TableCell>
@@ -39,6 +39,6 @@ export function CategoryTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }

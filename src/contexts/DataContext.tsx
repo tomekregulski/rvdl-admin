@@ -1,14 +1,3 @@
-import type {
-  Artist,
-  Category,
-  Event,
-  Location,
-  MediaType,
-  Raga,
-  Tape,
-  Track,
-  User,
-} from '@types';
 import {
   createContext,
   ReactNode,
@@ -19,6 +8,17 @@ import {
 } from 'react';
 import { DataTypes } from 'types/Models';
 
+import type {
+  Artist,
+  Category,
+  Event,
+  Location,
+  MediaType,
+  Raga,
+  Tape,
+  Track,
+  User,
+} from '../types/index';
 import { getAllData } from '../util/getAllData';
 
 export const OUTSIDE_DATA_PROVIDER_ERROR =

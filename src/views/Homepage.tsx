@@ -1,15 +1,17 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
+import { Banner } from '../components/Banner/Banner';
 import { DataTableContainer } from '../components/DataTable/DataTableContainer';
 import { MetricsContainer } from '../components/Metrics/MetricsContainer';
-
-type Views = 'dataTable' | 'metrics';
+import { Views } from '../types';
 
 const key = import.meta.env.VITE_API_KEY;
 
 export function HomePage() {
-  const [view, setView] = useState<Views>('dataTable');
+  const [view, setView] = useState<Views>('data');
+
+  const otherView: Views = view === 'data' ? 'metrics' : 'data';
 
   useEffect(() => {
     async function getToken() {
@@ -27,7 +29,6 @@ export function HomePage() {
 
     const allCookies = document.cookie.split('; ');
     const jwtKey = 'roop-verma-library-admin';
-    console.log(allCookies);
     let jwtFound = false;
     for (let i = 0; i < allCookies.length; i++) {
       const currentCookie = allCookies[i].split('=');
@@ -42,18 +43,11 @@ export function HomePage() {
     }
   }, []);
 
-  const otherView = view === 'metrics' ? 'Data Table' : 'Metrics';
-
   return (
-    <div className="flex flex-col items-center justify-center">
-      <button
-        type="button"
-        onClick={() => setView(view === 'metrics' ? 'dataTable' : 'metrics')}
-      >
-        {`View ${otherView}`}
-      </button>
+    <div className="flex flex-col items-center justify-center gap-4">
+      <Banner otherView={otherView} updateView={setView} />
       {view === 'metrics' && <MetricsContainer />}
-      {view === 'dataTable' && <DataTableContainer />}
+      {view === 'data' && <DataTableContainer />}
     </div>
   );
 }

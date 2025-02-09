@@ -1,4 +1,4 @@
-import { Track } from '@types';
+import { Track } from '../types/index';
 
 export interface PreparedTrack {
   id: number;

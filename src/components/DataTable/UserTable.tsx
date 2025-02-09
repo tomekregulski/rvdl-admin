@@ -1,7 +1,7 @@
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/User';
-import { TableCell } from './common';
+import { TableCell, TableWrapper } from './common';
 
 export interface ColumnTypeWithEditDelete {
   id: number;
@@ -35,7 +35,7 @@ export function UserTable() {
   const columns = users ? [...Object.keys(users[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <>
+    <TableWrapper>
       <Create />
       <table>
         <thead>
@@ -48,7 +48,7 @@ export function UserTable() {
         <tbody>
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
-              <tr key={`row-${row.id}`}>
+              <tr className="border" key={`row-${row.id}`}>
                 <TableCell key={`id-${row.id}`}>{row.id}</TableCell>
                 <TableCell key={`name-${row.id}`}>{row.email}</TableCell>
                 <TableCell key={`name-${row.id}`}>{row.firstName}</TableCell>
@@ -62,6 +62,6 @@ export function UserTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }

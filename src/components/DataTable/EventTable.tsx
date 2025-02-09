@@ -1,9 +1,8 @@
-import { Event } from '@types';
-
 import { useDataContext } from '../../contexts/DataContext';
+import { Event } from '../../types/index';
 import { DeleteDialog } from '../Dialog';
 import { Create, Update } from '../Forms/Event';
-import { TableCell } from './common';
+import { TableCell, TableWrapper } from './common';
 
 interface ColumnTypeWithEditDelete
   extends Omit<Event, 'location' | 'category' | 'tapes'> {
@@ -30,7 +29,7 @@ export function EventTable() {
   const columns = events ? [...Object.keys(events[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <>
+    <TableWrapper>
       <Create />
 
       <table
@@ -51,6 +50,7 @@ export function EventTable() {
             dataWithEditDelete.map((row) => (
               <tr
                 key={`row-${row.id}`}
+                className="border"
                 style={{
                   textOverflow: 'hidden',
                   whiteSpace: 'nowrap',
@@ -68,6 +68,6 @@ export function EventTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }

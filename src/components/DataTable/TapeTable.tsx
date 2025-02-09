@@ -1,7 +1,7 @@
 import { useDataContext } from '../../contexts/DataContext';
 import { DeleteDialog } from '../Dialog';
 import { Create, Edit } from '../Forms/Tape';
-import { TableCell } from './common';
+import { TableCell, TableWrapper } from './common';
 
 interface ColumnTypeWithEditDelete {
   id: number;
@@ -27,7 +27,7 @@ export function TapeTable() {
   const columns = tapes ? [...Object.keys(tapes[0]), 'Edit', 'Delete'] : [];
 
   return (
-    <>
+    <TableWrapper>
       <Create />
       <table>
         <thead>
@@ -40,7 +40,7 @@ export function TapeTable() {
         <tbody>
           {dataWithEditDelete &&
             dataWithEditDelete.map((row) => (
-              <tr key={`row-${row.id}`}>
+              <tr className="border" key={`row-${row.id}`}>
                 <TableCell key={`id-${row.id}`}>{row.id}</TableCell>
                 <TableCell key={`event-${row.id}`}>{row.eventId}</TableCell>
                 <TableCell key={`tape-${row.id}`}>{row.tapeId}</TableCell>
@@ -50,6 +50,6 @@ export function TapeTable() {
             ))}
         </tbody>
       </table>
-    </>
+    </TableWrapper>
   );
 }
