@@ -108,7 +108,7 @@ export async function createDataType(
 }
 
 export async function editDataType(
-  dataType: DataTypes | undefined,
+  dataType: DataTypes,
   data: ModelsUpdateUnion,
 ): Promise<ResponseType> {
   // const currentJwt = isValidJwt();
@@ -133,28 +133,26 @@ export async function editDataType(
 }
 
 export async function deleteDataType(
-  dataType: DataTypes | undefined,
+  dataType: DataTypes,
   data: Omit<EditData, 'name'>,
-) {
+): Promise<ResponseType> {
   // const currentJwt = isValidJwt();
-  if (dataType && data.id) {
-    try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
-        {
-          // headers: { jwt: currentJwt?.jwt },
-          data: { ...data },
-        },
-      );
-      if (response?.status === 200 || response?.status === 201) {
-        return { type: 'success' };
-      } else {
-        console.log(response);
-        return { type: 'error', message: 'Response returned with non-200 status' };
-      }
-    } catch (error) {
-      const errorMessage = getErrorMessage(error);
-      return { type: 'error', message: errorMessage };
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_ORIGIN}/api/v1/${dataType}/${apiKey}`,
+      {
+        // headers: { jwt: currentJwt?.jwt },
+        data: { ...data },
+      },
+    );
+    if (response?.status === 200 || response?.status === 201) {
+      return { type: 'success' };
+    } else {
+      console.log(response);
+      return { type: 'error', message: 'Response returned with non-200 status' };
     }
+  } catch (error) {
+    const errorMessage = getErrorMessage(error);
+    return { type: 'error', message: errorMessage.errorMessage };
   }
 }
